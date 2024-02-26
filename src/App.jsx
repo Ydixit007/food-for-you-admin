@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
   
   useEffect(() => {
     setIsLogin(isLoggedIn);

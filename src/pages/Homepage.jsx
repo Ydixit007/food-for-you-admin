@@ -19,7 +19,7 @@ const Homepage = ({ isLoggedIn = () => {} }) => {
   };
 
   return (
-    <main className="Homepage w-full h-screen px-8 py-4 ">
+    <main className="Homepage w-full h-[100svh] px-8 max-md:px-2 py-4 ">
       <h1 className="text-center text-xl font-bold mb-2">
         Food for You:{" "}
         <span className="text-error">{localStorage.getItem("cafeName")}</span>

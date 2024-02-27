@@ -30,9 +30,9 @@ const Login = ({ isLoggedIn }) => {
   };
 
   return (
-    <div className="login-page w-full h-[100vh] flex justify-center items-center flex-col">
+    <div className="login-page w-full h-[100svh] flex justify-center items-center flex-col p-2">
       <h1 className="text-xl font-bold text-primary-content mb-8">Food for You : <span className="text-error">Admin Panel</span></h1>
-      <div className="card w-96 bg-base-200 shadow-xl flex justify-center items-center flex-col gap-2 p-2">
+      <div className="card w-96 max-md:w-[20rem] bg-base-200 shadow-xl flex justify-center items-center flex-col gap-2 p-2 px-2">
         <h2 className="card-title text-primary-content mb-4 mt-4">Cafe Login</h2>
         <label className="input input-bordered flex items-center gap-2">
           <svg

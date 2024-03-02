@@ -8,10 +8,15 @@ import OrderCard from "../components/OrderCard";
 const Homepage = ({ isLoggedIn = () => {} }) => {
   const [Orders, setOrders] = useState([]);
   const [History, setHistory] = useState([]);
+  const [Refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getOrders();
   }, []);
+
+  useEffect(() => {
+    getOrders();
+  }, [Refresh]);
 
   const getOrders = async () => {
     setOrders(await getOrdersFromDatabase());
@@ -27,6 +32,8 @@ const Homepage = ({ isLoggedIn = () => {} }) => {
           className="ml-6 text-primary-content text-xs cursor-pointer"
           onClick={() => {
             isLoggedIn(false);
+            localStorage.removeItem("username");
+            localStorage.removeItem("cafeName");
           }}
         >
           Logout
@@ -37,14 +44,14 @@ const Homepage = ({ isLoggedIn = () => {} }) => {
           <h1 className="font-semibold text-secondary-content">Order Queue</h1>
           <div className="orders w-full h-full flex gap-4 py-1 overflow-x-auto items-center">
             {Orders &&
-              Orders.map((order, index) => {
+              Orders.map((order) => {
                 return (
                   <OrderCard
-                    key={index}
+                    key={order.orderId}
                     orderDetails={order.data}
                     items={order.data.items}
                     orderId={order.orderId}
-                    getOrders={getOrders}
+                    getOrders={setRefresh}
                   />
                 );
               })}
@@ -56,14 +63,14 @@ const Homepage = ({ isLoggedIn = () => {} }) => {
           </h1>
           <div className="orders w-full h-[99%] flex gap-4 items-center overflow-x-auto">
             {History &&
-              History.map((order, index) => {
+              History.map((order) => {
                 return (
                   <OrderCard
-                    key={index}
+                    key={order.orderId}
                     orderDetails={order.data}
                     items={order.data.items}
                     orderId={order.orderId}
-                    getOrders={getOrders}
+                    getOrders={setRefresh}
                   />
                 );
               })}

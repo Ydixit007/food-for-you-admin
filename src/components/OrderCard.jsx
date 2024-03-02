@@ -12,6 +12,7 @@ const OrderCard = ({
   const time = new Date(orderDetails.order_time.seconds * 1000);
   const arrivalTime = new Date(orderDetails.delivery_time.seconds * 1000);
   const [UserName, setUserName] = useState("");
+  const [userID, setUserID] = useState(orderDetails.user_id || "");
   const [OrderStatus, setOrderStatus] = useState(orderDetails.order_update);
   const [OrderCompleted, setOrderCompleted] = useState(orderDetails.isComplete);
 
@@ -26,13 +27,13 @@ const OrderCard = ({
 
   const updateOrderCompleted = async (orderId, status) => {
     const complete = await updateIsComplete(orderId, status);
-    getOrders();
+    getOrders((current) => !current);
   };
 
   const updateOrder = async (orderId, status) => {
     const complete = await updateOrderStatus(orderId, status);
     setOrderStatus(status)
-    getOrders();
+    getOrders((current) => !current);
   };
 
   useEffect(() => {
